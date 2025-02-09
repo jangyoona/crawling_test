@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--   
+  SBiz version 1.0
+
+  Copyright ⓒ 2022 kt corp. All rights reserved.
+
+  This is a proprietary software of kt corp, and you may not use this file except in
+  compliance with license agreement with kt corp. Any redistribution or use of this
+  software, with or without modification shall be strictly prohibited without prior written
+  approval of kt corp, and the copyright notice above does not evidence any actual or
+  intended publication of such software. 
+-->
+
+<!--<mapper namespace="admin">-->
+<mapper namespace="com.cms_jsp.mapper.CrawlingMapper">
+	
+	<insert id="insertNotice" parameterType="List">
+		INSERT INTO crawl_notice (
+			board_no,
+			title,
+			writer,
+			content,
+			image,
+			url,
+			created_at,
+			hits
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+		(
+			#{item.boardNo},
+			#{item.title},
+			#{item.writer},
+			<!-- zvl가 null이면 빈값으로 치환해서 임시로 NULLIF 사용함 -->
+			NULLIF(#{item.content}, ""),
+			NULLIF(#{item.image}, ""),
+			#{item.detailUrl},
+			#{item.createdAt},
+			#{item.hits}
+		)
+		</foreach>
+		
+	</insert>
+	
+	<select id="findTop10BoardNos" resultType="Long">
+		SELECT
+			board_no
+		FROM
+			crawl_notice
+		ORDER BY 
+			board_no DESC
+		LIMIT
+			10
+	</select>
+	
+</mapper>
+
+
+
+

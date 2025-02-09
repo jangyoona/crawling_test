@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: local
+  # Database
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cms
+    username: root
+    password: 1004
+  # JPA properties
+  jpa: 
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate: 
+#        show_sql: true
+        format_sql: true
+      database: mysql
+      database-platform: org.hibernate.dialect.mysql
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+ext-url:
+  forecast-url: /1360000/VilageFcstInfoService_2.0
+  sdsc-url: /B553077/api/open/sdsc2
+  
+ext-servicekey:
+  :servicekey: wy5A%2FSoumLFZly%2B%2B6CZnhzySF09vPiYh3AtuS22O8iWcgwPQHJFudm9mV3XDrduifMc2vFeCb2Ffst0DPwv4kA%3D%3D
+  
+        
+logging:
+  level:
+    org.springframework: ERROR
+    org.hibernate: DEBUG
+        
+# Server configuration
+server:
+  port: 8080 #set your port
+  error:
+    whitelabel:
+      enabled: false
+    include-message: always
+        
