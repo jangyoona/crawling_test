@@ -13,6 +13,6 @@
 -->
 <configuration>
 	<typeAliases>
-		<typeAlias alias="zvl" type="com.cms_jsp.model.ZValue"/>
+		<typeAlias alias="zvl" type="com.crawl.demo.model.ZValue"/>
     </typeAliases>
 </configuration> 

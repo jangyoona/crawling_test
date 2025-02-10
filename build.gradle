@@ -1,11 +1,10 @@
 plugins {
 	id 'java'
-	id 'war'
 	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'com'
+group = 'com.crawl'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -25,50 +24,26 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  	implementation 'org.springframework.boot:spring-boot-starter-validation'
-  	implementation 'org.springframework.boot:spring-boot-starter-web'
-  
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // JSP 파서
-	implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
-	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
-	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
-  
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-  	
-  	
-  	//
-  	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-  	
-  	// jsoup
-  	implementation 'org.jsoup:jsoup:1.13.1'
-  	
-  	// mybatis
-  	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-  	
-/*    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
-      runtimeOnly 'org.postgresql:postgresql'*/
-      runtimeOnly 'com.mysql:mysql-connector-j'
-  
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
     implementation group: 'org.json', name: 'json', version: '20231013'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    
-    compileOnly 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
     implementation 'org.apache.commons:commons-collections4:4.4'
+    compileOnly 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+  	// jsoup
+  	implementation 'org.jsoup:jsoup:1.13.1'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
-tasks.named('war') {
-    enabled = true
-}
-/*tasks.withType(JavaCompile) {
-    options.compilerArgs << "-parameters"
-}*/
-
